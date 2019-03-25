@@ -1,1 +1,37 @@
+import sys
+# parse command line
+if file_name_given:
+    inf = open(file_name_given)
+else:
+    inf = sys.stdin
+def create_pq():
+    return []
+def add_last(pq, c):
+    pq.append(c)
 
+def root(pq):
+    return 0
+
+def set_root(pq, c):
+    if len(pq) != 0:
+         pq[0] = c
+def get_data(pq, p):
+    return pq[p]
+def children(pq, p):
+    if 2*p + 2 < len(pq):
+        return [2*p + 1, 2*p + 2]
+    else:
+        return [2*p + 1]
+def parent(p):
+    return (p - 1) // 2
+def exchange(pq, p1, p2):
+    pq[p1], pq[p2] = pq[p2], pq[p1]
+def insert_in_pq(pq, c):
+    add_last(pq, c)
+    i = len(pq) - 1
+    while i != root(pq) and get_data(pq, i) < get_data(pq, parent(i)):
+        p = parent(i)
+        exchange(pq, i, p)
+        i = p
+if inf is not sys.stdin:
+    inf.close()
